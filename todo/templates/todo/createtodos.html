@@ -1,0 +1,56 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{%static 'css/create_header.css'%}">
+<div class="modal-header text-center">
+    <h3 class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3" ><strong>Create<b class="green-text font-weight-bold"><strong> Todo</strong></b></strong></h3>
+</div>
+
+<div class="modal-dialog cascading-modal" role="document">
+    <div class="modal-content">
+        <div class="modal-c-tabs">
+            <ul class="nav nav-tabs md-tabs tabs-1" role="tablist">
+                <li class="nav-item">
+                    <b class="nav-link active text-center" data-toggle="tab" href="#panel7" role="tab" id="create"><b class="green-text font-weight-bold">N</b>ew <b class="green-text font-weight-bold">T</b>odo</b>
+                </li>
+            </ul>
+            <div class="tab-content">
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-body mb-1">
+                            <div class="md-form form-sm mb-5">
+                                <input type="text" id="modalLRInput10" class="form-control form-control-sm validate" name="title" id="title" required>
+                                <label data-error="wrong" data-success="right" for="modalLRInput10">Title</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="materialContactFormMessage" class="form-control md-textarea" rows="3" name="memo" id="memo" required></textarea>
+                                <label for="materialContactFormMessage">Memo</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="important" id="important">
+                                <label class="custom-control-label" for="defaultLoginFormRemember">Important</label>
+                            </div>
+                            <div class="text-center mt-2">
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 
+

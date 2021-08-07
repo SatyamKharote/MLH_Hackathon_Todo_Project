@@ -1,0 +1,92 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <link rel="icon" type="image/png"  href="{% static 'todo/logo.png' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/base.css'%}">
+    <title>Todo Woo</title>
+</head>
+<body>
+
+
+{% comment %} Navbar {% endcomment %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark indigo">
+        <img src="{% static 'todo/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
+        <a class="navbar-brand" href="{% url 'home' %}"><strong>Todo Woo</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {{ create }}">
+                        <a class="nav-link" href="{% url 'createtodos' %}">Create</a>
+                    </li>
+                    <li class="nav-item {{ current }}">
+                        <a class="nav-link" href="{% url 'currenttodos' %}">Current</a>
+                    </li>
+                    <li class="nav-item {{ completed }}">
+                        <a class="nav-link" href="{% url 'completedtodos' %}">Completed</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+            <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <img src="{% static 'todo/profile.png' %}" width="35" height="35" class="d-inline-block align-top">
+                        </li>
+                        <li class="nav-item">
+                            <b class="nav-link" href="  ">Welcome!! {{user.username}}</b>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                            <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
+                                {% csrf_token %}
+                                <button id="signOutBtn" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signupuser' %}">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
+                        </li>
+                    {% endif %}
+            </ul>
+        </div>
+</nav>
+
+{% comment %} End Navbar {% endcomment %}
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

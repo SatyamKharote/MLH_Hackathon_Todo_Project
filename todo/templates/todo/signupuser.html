@@ -1,0 +1,66 @@
+
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
+    
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="modal-dialog" role="document" style="min-width: 30rem;">
+    
+        <div class="modal-content form-elegant">
+ 
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Sign<a
+                  class="green-text font-weight-bold"><strong> UP</strong></a></strong></h3>
+            </div>
+         
+            <div class="modal-body mx-4">
+    
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+    
+                <form method="POST">
+                    {% csrf_token %}
+    
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="Form-text" class="form-control validate" name="username"id="username" required>
+                        <label data-error="wrong" data-success="right" for="Form-text"  >Username</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="Form-pass1" class="form-control validate" name="password1" id="password1"required>
+                        <label data-error="wrong" data-success="right" for="Form-pass1"  >Password</label>
+    
+                    </div>
+    
+                    <div class="md-form">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="Form-pass2" class="form-control validate" name="password2" id="password2"required>
+                        <label data-error="wrong" data-success="right" for="Form-pass2">Confirm password</label>
+                    </div>
+    
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn">Sign Up</button>
+                    </div>
+    
+                </form>
+            
+            </div>
+           
+            <div class="modal-footer mx-5 pt-3 mb-1">
+                <p class="font-small black-text d-flex justify-content-end">Have an account?  <a href="{% url 'loginuser' %}" class="green-text ml-1 font-weight-bold">
+                    Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

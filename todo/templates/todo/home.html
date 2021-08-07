@@ -1,0 +1,17 @@
+
+{% extends "todo/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/home.css'%}">
+
+<div class="banner-text text-center">
+
+    <h1><b class="green-text font-weight-bold">S</b><b class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3">imply</b> <b class="green-text font-weight-bold">Y</b><b class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3">our</b> <b class="green-text font-weight-bold">T</b><b class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3">odos</b>. <b class="green-text font-weight-bold">W</b><b class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3">oo!</b></h1>
+    <h3>Life is fun. But life is also busy. There's a million different things you could be doing. But what matters is <u>what</u> you do. We created <b><i>Todo Woo</i></b> to help you make sense of all of your opportunities and live that life that matters most to you. Your new organized life awaits.</h3>
+    <a role="button" class="btn" href="{% url 'signupuser' %}">Start</a>
+
+</div>
+
+{% endblock %}
+

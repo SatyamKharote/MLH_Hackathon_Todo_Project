@@ -1,0 +1,37 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{%static 'css/current_header.css'%}">
+
+    <div class="modal-header text-center">
+        
+        {% if todos %}
+          <h3 class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3" ><strong>Current<b class="green-text font-weight-bold"><strong> Todo</strong></b></strong> {{ todos.count }} </h3>{{ todos.count|pluralize }}
+        {% else %}
+             <h3 class="modal-title w-100 dark-grey-text font-weight-bold font-weight-bold my-3" ><strong>Current<b class="green-text font-weight-bold"><strong> Todo</strong></b></strong></h3>
+        {% endif %}
+
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if todos %}
+            <div class="list-group">
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodos' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b class="modal-title w-100 black-text my-3">{{ todo.title }}</b>{% if todo.memo %} -- {{ todo.memo|truncatechars:30 }}{% endif %}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any todos! Nice work.</h2>
+            <br>
+            <a role="button" class="btn" href="{% url 'createtodos' %}">New Todo</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+

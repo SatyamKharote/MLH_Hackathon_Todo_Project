@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+
+.banner-text{
+    margin-top: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.btn{
+    background-color:#ffff;
+    color: #4285f4;
+    border: 2px solid #4285f4;
+    font-weight: 500;
+    font-size: 20px;
+}
+.btn:hover{
+   background-color: #4285f4;
+   color: #ffff;
+}
